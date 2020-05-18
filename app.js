@@ -98,6 +98,21 @@ app.put("/blogs/:id", function(req, res){
 });
 
 
+//delete route
+app.delete("/blogs/:id", function(req, res){
+    //destry blog
+    Blog.findByIdAndRemove(req.params.id, function(err){
+        if(err){
+            console.log(err);
+        }else{
+            //redirect to index
+            res.redirect("/blogs");
+        }
+    });
+});
+
+
+
 app.listen(3001, function(){
     console.log("Server Listening on port 3001")
 });
